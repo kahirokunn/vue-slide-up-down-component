@@ -59,7 +59,7 @@ export default {
   methods: {
     layout() {
       if (this.active) {
-        this.maxHeight = this.$el.offsetHeight;
+        this.maxHeight = this.$el.scrollHeight;
       } else {
         this.maxHeight = 0;
       }
