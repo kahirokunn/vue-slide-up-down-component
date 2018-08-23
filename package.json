@@ -1,0 +1,23 @@
+{
+  "name": "vue-slide-up-down-component",
+  "version": "0.0.1",
+  "main": "src/main.js",
+  "description": "Vue 2.x slide-up-down-component.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k-okina/vue-slide-up-down-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/k-okina/vue-slide-up-down-component/issues"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue-slide-up-down-component",
+    "slide-up",
+    "slide-down",
+    "vue-slide-up-down",
+    "slide-up-down"
+  ]
+}
