@@ -16,6 +16,8 @@ export default {
   data: () => ({
     maxHeight: 0,
     offsetHeight: 0,
+    opened: false,
+    animationing: false,
   }),
 
   render(h) {
@@ -47,6 +49,7 @@ export default {
 
   computed: {
     style() {
+      if (this.opened) return {};
       return {
         overflow: 'hidden',
         'transition-property': 'height',
@@ -58,10 +61,24 @@ export default {
 
   methods: {
     layout() {
+      if (this.animationing) return;
       if (this.active) {
         this.maxHeight = this.$el.scrollHeight;
+        this.animationing = true;
+        setTimeout(() => {
+          this.opened = true;
+          this.animationing = false;
+        }, this.duration);
       } else {
-        this.maxHeight = 0;
+        this.opened = false;
+        this.maxHeight = this.$el.scrollHeight;
+        this.animationing = true;
+        this.$nextTick(() => {
+          setTimeout(() => {
+            this.maxHeight = 0;
+            this.animationing = false;
+          }, 1);
+        });
       }
     },
   },
