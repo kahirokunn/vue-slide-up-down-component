@@ -2,7 +2,7 @@
 
 Like jQuery's [`slideUp`](http://api.jquery.com/slideup/) / [`slideDown`](http://api.jquery.com/slidedown/), but for [Vue](vuejs.org)!
 
-[DEMO](https://jsfiddle.net/kahirokunn/qjyd6935/11)
+[DEMO](https://jsfiddle.net/kahirokunn/qjyd6935/14)
 
 ## Installation
 

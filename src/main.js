@@ -17,7 +17,7 @@ export default {
     maxHeight: 0,
     offsetHeight: 0,
     opened: false,
-    animationing: false,
+    isInitialized: false,
   }),
 
   render(h) {
@@ -61,22 +61,26 @@ export default {
 
   methods: {
     layout() {
-      if (this.animationing) return;
       if (this.active) {
+        this.isInitialized = true;
         this.maxHeight = this.$el.scrollHeight;
-        this.animationing = true;
         setTimeout(() => {
-          this.opened = true;
-          this.animationing = false;
+          if (this.active) {
+            this.opened = true;
+          }
         }, this.duration);
       } else {
+        if (!this.isInitialized) {
+          this.isInitialized = true;
+          return;
+        }
         this.opened = false;
         this.maxHeight = this.$el.scrollHeight;
-        this.animationing = true;
         this.$nextTick(() => {
           setTimeout(() => {
-            this.maxHeight = 0;
-            this.animationing = false;
+            if (!this.active) {
+              this.maxHeight = 0;
+            }
           }, 1);
         });
       }
