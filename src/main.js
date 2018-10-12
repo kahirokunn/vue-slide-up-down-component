@@ -4,21 +4,24 @@ export default {
   props: {
     active: Boolean,
     duration: {
-      type: Number,
       default: 500,
     },
     tag: {
       type: String,
       default: 'div',
     },
+    closedHeight: {
+      default: 0,
+    },
   },
 
-  data: () => ({
-    maxHeight: 0,
-    offsetHeight: 0,
-    opened: false,
-    isInitialized: false,
-  }),
+  data() {
+    return {
+      maxHeight: this.closedHeight,
+      opened: false,
+      isInitialized: false,
+    };
+  },
 
   render(h) {
     return h(
@@ -27,13 +30,11 @@ export default {
         style: this.style,
         ref: 'container',
       },
-      this.$slots.default,
+      this.$slots.default
     );
   },
 
   mounted() {
-    this.layout();
-
     window.addEventListener('resize', this.layout);
   },
 
@@ -50,12 +51,18 @@ export default {
   computed: {
     style() {
       if (this.opened) return {};
-      return {
+      const baseStyle = {
         overflow: 'hidden',
-        'transition-property': 'height',
-        height: `${this.maxHeight}px`,
-        'transition-duration': `${this.duration}ms`,
+        'max-height': `${this.maxHeight}px`,
       };
+
+      if (this.isInitialized) {
+        return Object.assign({}, baseStyle, {
+          'transition-property': 'max-height',
+          'transition-duration': `${this.duration}ms`,
+        });
+      }
+      return baseStyle;
     },
   },
 
@@ -79,7 +86,9 @@ export default {
         this.$nextTick(() => {
           setTimeout(() => {
             if (!this.active) {
-              this.maxHeight = 0;
+              if (this.maxHeight > this.closedHeight) {
+                this.maxHeight = this.closedHeight;
+              }
             }
           }, 1);
         });
