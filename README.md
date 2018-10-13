@@ -1,8 +1,8 @@
-# vue-slide-up-down-component-component
+# vue-slide-up-down-component
 
 Like jQuery's [`slideUp`](http://api.jquery.com/slideup/) / [`slideDown`](http://api.jquery.com/slidedown/), but for [Vue](vuejs.org)!
 
-[DEMO](https://jsfiddle.net/kahirokunn/qjyd6935/14)
+[DEMO](https://jsfiddle.net/kahirokunn/qjyd6935/42)
 
 ## Installation
 
