@@ -1,6 +1,6 @@
 {
   "name": "vue-slide-up-down-component",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "main": "src/main.js",
   "description": "Vue 2.x slide-up-down-component.",
   "license": "MIT",
