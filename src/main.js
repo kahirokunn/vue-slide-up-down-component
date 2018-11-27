@@ -40,8 +40,11 @@ export default {
   },
 
   watch: {
-    active() {
-      this.layout();
+    active: {
+      handler() {
+        this.layout();
+      },
+      immediate: true,
     },
   },
 
@@ -66,13 +69,19 @@ export default {
   methods: {
     layout() {
       if (this.active) {
-        this.isInitialized = true;
-        this.maxHeight = this.$el.scrollHeight;
-        setTimeout(() => {
-          if (this.active) {
-            this.opened = true;
-          }
-        }, this.duration);
+        if (!this.isInitialized) {
+          this.isInitialized = true;
+          this.opened = true;
+          return;
+        } else {
+          this.isInitialized = true;
+          this.maxHeight = this.$el.scrollHeight;
+          setTimeout(() => {
+            if (this.active) {
+              this.opened = true;
+            }
+          }, this.duration);
+        }
       } else {
         if (!this.isInitialized) {
           this.isInitialized = true;
@@ -87,7 +96,7 @@ export default {
                 this.maxHeight = this.closedHeight;
               }
             }
-          }, 1);
+          }, 10);
         });
       }
     },
